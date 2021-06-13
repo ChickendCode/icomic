@@ -10,7 +10,7 @@ const MainInfo = ({ storyInfo, chapters }) => {
   const { user } = useSelector(state => state.users)
   const [isFollowed, setIsFollowed] = useState(false)
   const [follows, setFollows] = useState(0)
-  const [historyChapterData, setHistoryChapterData] = useState({})
+  const [historyChapterData, setHistoryChapterData] = useState(null)
   const [currentIndex, setCurrentIndex] = useState(0)
   const dispatch = useDispatch()
   let firstChapter;
@@ -58,20 +58,26 @@ const MainInfo = ({ storyInfo, chapters }) => {
       .then(() => dispatch(toggleLoading(false)))
   }
   
-  // Lấy lịch sử đọc của user theo userid và story
-  getOneHistory(storyInfo._id)
-  .then(res => {
-    if (res.data && res.data.status) {
-      let historyChapterData = res.data.staffData;
-      setHistoryChapterData(historyChapterData);
-      let currentIndexTemp = chapters.findIndex(x => x._id === historyChapterData.chapterId)
-      // Số chapter của user đã được lưu
-      setCurrentIndex(currentIndexTemp);
-      dispatch(toggleLoading(false))
-    }
-  })
-  .catch(err => alert('ERROR: ' + err))
-  .then(() => dispatch(toggleLoading(false)))
+  if (chapters && chapters.length > 0 && !currentIndex) {
+    // Lấy lịch sử đọc của user theo userid và story
+    getOneHistory(storyInfo._id)
+      .then(res => {
+        if (res.data && res.data.status) {
+          let historyChapterData = res.data.staffData;
+          setHistoryChapterData(historyChapterData);
+          let currentIndexTemp = chapters.findIndex(x => x._id === historyChapterData.chapterId)
+          // Số chapter của user đã được lưu
+          setCurrentIndex(currentIndexTemp);
+          dispatch(toggleLoading(false))
+        } else {
+          // Chưa login hoặc get không có
+
+        }
+    })
+    .catch(err => alert('ERROR: ' + err))
+    .then(() => dispatch(toggleLoading(false)))
+  }
+  
   
   return (
     <div className='main-info'>
