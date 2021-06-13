@@ -1,18 +1,9 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
 import Warning from "../../global/Warning"
-import { getAllChaptersAsync } from "../../redux/actions/chapters.actions"
 import { date } from "../../utils/getDate"
 import { Link } from 'react-router-dom'
 
-const ChaptersList = ({ storyId }) => {
-  const { chapters } = useSelector(state => state.chapters)
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(getAllChaptersAsync({ story: storyId }, true))
-  }, [dispatch, storyId])
-
+const ChaptersList = ({ storyId,  chapters}) => {
+  console.log('chapters', chapters);
   return (
     <div className='chapter-list'>
       {

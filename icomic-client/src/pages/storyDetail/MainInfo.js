@@ -3,12 +3,20 @@ import { useDispatch, useSelector } from "react-redux"
 import { toggleLoading } from "../../redux/actions/web.actions"
 import { followStory, unFollowStory } from "../../services/stories.services"
 import { date } from "../../utils/getDate"
+import { Link } from 'react-router-dom'
 
-const MainInfo = ({ storyInfo }) => {
+const MainInfo = ({ storyInfo, chapters }) => {
   const { user } = useSelector(state => state.users)
   const [isFollowed, setIsFollowed] = useState(false)
   const [follows, setFollows] = useState(0)
   const dispatch = useDispatch()
+  console.log('chapters', chapters);
+  let firstChapter;
+  let lastChapter;
+  if (chapters && chapters.length > 0) {
+    firstChapter = chapters[0];
+    lastChapter = chapters[chapters.length - 1];
+  }
 
   useEffect(() => {
     if (storyInfo && storyInfo.follows && user && user._id) {
@@ -83,6 +91,18 @@ const MainInfo = ({ storyInfo }) => {
               <button onClick={unfollow}><i class="fas fa-heart"></i> Bỏ theo dõi {(follows)}</button>
             }
             <p className='description'>{storyInfo?.shortDescription}</p>
+            {
+              chapters && chapters.length > 0 &&
+              <div>
+                <button className='mr-1'>
+                  <Link style={{color: 'red'}} target="_blank" to={`/chapters/${storyInfo._id}/${firstChapter._id}/1`}>Đọc trang đầu</Link>
+                </button>
+                <button className='mr-1'>
+                  <Link style={{color: 'red'}} target="_blank" to={`/chapters/${storyInfo._id}/${lastChapter._id}/${chapters.length}`}>Đọc trang cuối</Link>
+                </button>
+                <button>Đọc tiếp</button>
+              </div>
+            }
           </div>
         </div>
       </div>

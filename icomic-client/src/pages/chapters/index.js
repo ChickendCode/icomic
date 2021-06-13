@@ -12,8 +12,6 @@ const Chapter = () => {
   const currentIndex = chapters.findIndex(x => x._id === _id)
   const prev = currentIndex > 0 ? chapters[currentIndex - 1] : null
   const next = currentIndex < (chapters.length - 1) ? chapters[currentIndex + 1] : null
-  const first = chapters[0];
-  const last = chapters[chapters.length - 1];
 
   const dispatch = useDispatch()
   const [chapter, setChapter] = useState({})
@@ -46,19 +44,11 @@ const Chapter = () => {
           <div className="btn__chap">
           {
             prev &&
-            <Link className='change-btn prev-btn' to={`/chapters/${storyId}/${first && first._id}/${currentIndex - currentIndex + 1}`}><i class="fas fa-angle-double-left"></i></Link>
-          }
-          {
-            prev &&
             <Link className='change-btn prev-btn' to={`/chapters/${storyId}/${prev && prev._id}/${currentIndex}`}><i className="fas fa-angle-left"></i></Link>
           }
           {
             next &&
             <Link className='change-btn next-btn' to={`/chapters/${storyId}/${next && next._id}/${currentIndex + 2}`}><i className="fas fa-angle-right"></i></Link>
-          }
-          {
-            next &&
-            <Link className='change-btn next-btn' to={`/chapters/${storyId}/${last && last._id}/${chapters.length}`}><i className="fas fa-angle-double-right"></i></Link>
           }
           </div>
         </div>
