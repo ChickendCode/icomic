@@ -1,0 +1,258 @@
+.collection1 .collection1-container {
+    margin: 24px 0px;
+}
+
+.collection1 .collection1-container .slick-list {
+    padding: 20px 0;
+}
+
+.collection1 .collection1-container .extra-item {
+    position: relative;
+    margin-bottom: 12px;
+    padding: 4px;
+    transition: all .5s ease;
+}
+
+.collection1 .collection1-container .extra-item:hover {
+    transform: translateY(-10px);
+}
+
+.collection1 .collection1-container .extra-item .category {
+    position: absolute;
+    padding: 4px 12px;
+    background: #ff7979;
+    z-index: 10;
+    border-radius: 5px;
+    top: 15px;
+    left: 10px;
+    color: white;
+}
+
+.collection1 .collection1-container .extra-item .image-wrapper {
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.collection1 .collection1-container .extra-item .image-wrapper img {
+    height: 300px;
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.collection1 .collection1-container .extra-item .image-wrapper::before {
+    content: "";
+    background: linear-gradient( 180deg, rgba(0, 0, 0, 0) 37.15%, rgba(0, 0, 0, 0.6) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.collection1 .collection1-container .main-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 12px;
+    padding: 4px;
+    border: 1px solid rgba(243, 154, 70, 0.315);
+}
+
+.collection1 .collection1-container .main-item .category {
+    position: absolute;
+    padding: 4px 12px;
+    background: var(--primary-color);
+    z-index: 10;
+    color: white;
+}
+
+.collection1 .collection1-container .main-item .image-wrapper {
+    width: 100%;
+    // aspect-ratio: 3/2;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.collection1 .collection1-container .extra-item .image-wrapper .title {
+    min-height: 20%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: white;
+    font-size: 20px;
+}
+
+.collection1 .collection1-container .main-item .image-wrapper .title {
+    min-height: 20%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(255, 120, 66, 0.493);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    color: white;
+    font-size: 1.8rem;
+    text-shadow: 2px 2px 2px #d86c14;
+}
+
+.collection1 .slick-arrow {
+    background: var(--primary-color);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    color: red;
+    text-align: center;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+
+.collection1 .slick-next {
+    right: -50px!important;
+}
+
+.collection1 .slick-next::before {
+    content: "\f105";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    transition: all .5s ease-in-out;
+    line-height: 35px;
+}
+
+.collection1 .slick-prev::before {
+    content: "\f104";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    transition: all .5s ease-in-out;
+    line-height: 35px;
+}
+
+.collection1 .slick-prev {
+    left: -60px!important;
+}
+
+.collection2 {
+    margin-bottom: 24px;
+    .collection2-container {
+        .left-container {
+            .row.custom-gutter {
+                margin-left: -6px;
+                margin-right: -6px;
+            }
+            [class^="col"].custom-gutter,
+            [class*=" col"].custom-gutter {
+                padding-left: 6px;
+                padding-right: 6px;
+            }
+            .item {
+                position: relative;
+                padding: 4px;
+                // border: 1px solid rgba(243, 154, 70, 0.315);
+                margin-bottom: 12px;
+                .category {
+                    position: absolute;
+                    padding: 4px 12px;
+                    background: var(--primary-color);
+                    z-index: 10;
+                    color: white;
+                }
+                .image-wrapper {
+                    width: 100%;
+                    border-radius: 6px;
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                        aspect-ratio: 3/4;
+                        object-fit: cover;
+                        border-radius: 6px;
+                        height: 250px;
+                        transform: scale(1);
+                        transition: all 0.5s ease-in-out;
+                    }
+                }
+                .image-wrapper:hover img {
+                    transform: scale(1.1);
+                }
+                .info {
+                    a {
+                        padding: 0px 12px;
+                        margin: 12px 0px;
+                        margin-bottom: 0;
+                        font-weight: bold;
+                        width: 100%;
+                        text-align: center;
+                        color: var(--primary-color-2);
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 1;
+                        overflow: hidden;
+                    }
+                    p {
+                        text-align: center;
+                        margin: 0;
+                    }
+                }
+            }
+            .item:hover .detail-popup {
+                display: block;
+            }
+        }
+        .right-container {
+            max-height: 700px;
+            overflow-y: scroll;
+            .item {
+                padding: 4px;
+                display: flex;
+                align-items: center;
+                margin-bottom: 8px;
+                width: 100%;
+                border-bottom: 1px solid rgb(235, 235, 235);
+                .count {
+                    width: 10%;
+                    font-weight: bold;
+                }
+                .count.stt1 {
+                    color: blue
+                }
+                .count.stt2 {
+                    color: green
+                }
+                .count.stt3 {
+                    color: orange
+                }
+                .thumb {
+                    width: 20%;
+                    flex-shrink: 1;
+                    .image-wrapper {
+                        img {
+                            width: 100%;
+                            aspect-ratio: 1;
+                            object-fit: cover;
+                        }
+                    }
+                }
+                .info {
+                    width: 70%;
+                    padding: 8px;
+                    border-top-right-radius: 8px;
+                    border-bottom-right-radius: 8px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,92 @@
+#filter .filter-container {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+}
+
+#filter .filter-container ul.filter-list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    margin-left: 20px;
+}
+
+#filter .filter-container ul li.filter-item {
+    list-style-type: none;
+    padding: 5px 20px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    position: relative;
+    margin-right: 8px;
+}
+
+#filter .filter-container ul li.filter-item:hover ul {
+    display: block;
+}
+
+#filter .filter-container ul li.filter-item ul {
+    display: none;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    background: var(--primary-color);
+    color: white;
+    top: 35px;
+    left: 15%;
+    z-index: 5;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#filter .filter-container ul li.filter-item .filter-menu li {
+    display: block;
+    padding: 5px 20px;
+    width: 160px;
+    font-style: italic;
+    font-size: 1rem;
+}
+
+#filter .filter-container ul li.filter-item .filter-menu li:hover {
+    background: rgba(255, 255, 255, 0.37);
+}
+
+#filter .filter-container ul li.filter-item.active {
+    border-bottom: 1px solid rgb(189, 112, 50);
+}
+
+#filter .filter-tags {
+    display: inline-flex;
+    margin-left: 20px;
+}
+
+#filter .filter-tags .tag {
+    margin-right: 12px;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    /* border: 1px solid rgb(189, 112, 50); */
+    border-radius: 888888px;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--primary-color-2);
+}
+
+#filter .filter-tags .tag span {
+    margin-right: 12px;
+    color: var(--primary-color-2);
+}
+
+#filter .filter-tags .tag i {
+    cursor: pointer;
+}
+
+#filter .filter-tags .tag i:hover {
+    transition: ease 0.2s;
+    color: rgb(218, 83, 83);
+}
+
+#filter .filter-tag-container {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 45px;
+}

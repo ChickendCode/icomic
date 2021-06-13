@@ -1,0 +1,98 @@
+:root {
+    --primary-color: linear-gradient(to right, #0187c4 40%, #189eff);
+    --primary-color-2: rgb(20, 154, 244);
+    --text-bold-color: #424242;
+    --button-background-color: #e7edf1;
+    --border-color: rgba(0, 0, 0, 0.205);
+}
+
+@font-face {
+    font-family: mainFont;
+    src: url('../fonts/Roboto-Regular.ttf')
+}
+
+* {
+    font-family: mainFont;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+button {
+    border: none;
+    outline: none !important;
+    cursor: pointer;
+}
+
+input {
+    outline: none;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none !important;
+    outline: none;
+}
+
+.ck.ck-editor__main>.ck-editor__editable {
+    min-height: 200px;
+}
+
+#extra-layout .header {
+    background: rgb(250, 94, 32);
+}
+
+#extra-layout .header h1 {
+    margin: 0;
+    padding: 12px;
+    text-align: center;
+    position: relative;
+}
+
+#extra-layout .header h1 i {
+    position: absolute;
+    left: 32px;
+    color: white;
+}
+
+#extra-layout .header h1 span {
+    color: white;
+}
+
+.side__bar-container {
+    position: fixed;
+    width: 25%;
+}
+
+.side__bar-container button {
+    display: none;
+}
+
+.page-item.current a {
+    background: rgb(230, 113, 45) !important;
+    color: white;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background: rgba(0, 0, 0, 0.082);
+    border-radius: 10px;
+}
+
+.scroll::-webkit-scrollbar-corner {
+    background-color: rgba(0, 0, 0, 0.082) !important;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border-radius: 10px;
+    height: 5px;
+}
+
+.scroll::-webkit-scrollbar-track {
+    background-color: #0000000c !important;
+    border-radius: 10px;
+}
