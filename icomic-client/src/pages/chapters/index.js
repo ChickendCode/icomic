@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 import { toggleLoading } from "../../redux/actions/web.actions"
 import { getOneChapter } from "../../services/chapters.services"
 import { getAllChaptersAsync } from "../../redux/actions/chapters.actions"
-import { getOneHistory } from '../../services/history.services'
+import { getOneHistory, createHistory, updateHistory } from '../../services/history.services'
 
 const Chapter = () => {
   const { _id, chap, storyId } = useParams()
@@ -37,19 +37,39 @@ const Chapter = () => {
   }, [dispatch, storyId])
 
   useEffect(() => {
-    dispatch(toggleLoading(true))
+    // Lấy lịch sử đọc của user theo userid và story
     getOneHistory(storyId)
-      .then(res => {
-        if (res.data && res.data.status) {
-          
-          dispatch(toggleLoading(false))
-        } else {
-          alert(res.data.message)
-        }
-      })
-      .catch(err => alert('ERROR: ' + err))
-      .then(() => dispatch(toggleLoading(false)))
+    .then(res => {
+      // Trường hợp chưa có lịch sử thì tạo mới lịch sử mới cho user
+      if (!res.data.status) {
+        let data = {
+          storyId: storyId,
+          chapterId: _id,
+          userId: res.data.userId
+        };
+        createHistory(data);
+        dispatch(toggleLoading(false))
+      }
+    })
+    .catch(err => alert('ERROR: ' + err))
+    .then(() => dispatch(toggleLoading(false)))
   }, [dispatch, storyId])
+
+  // Lấy lịch sử đọc của user theo userid và story
+  getOneHistory(storyId)
+  .then(res => {
+    // Trường hợp đã có lịch sử thì update lich sử đọc chapter mới
+    if (res.data && res.data.status) {
+      let historyData = res.data.staffData;
+      historyData.chapterId = _id;
+      let historyId = historyData._id;
+      updateHistory(historyId, historyData);
+      dispatch(toggleLoading(false))
+    }
+  })
+  .catch(err => alert('ERROR: ' + err))
+  .then(() => dispatch(toggleLoading(false)))
+
 
   return (
     <div className='chapter-detail'>

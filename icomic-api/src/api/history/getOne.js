@@ -1,7 +1,8 @@
 const HistoryModel = require('../../models/history')
 
 const getOne = (req, res, next) => {
-  const { userId,  storyId} = req
+  const { userId } = req;
+  const storyId = req.params._id;
 
   HistoryModel.findOne({ userId, storyId })
     .then(resData => {
@@ -11,7 +12,10 @@ const getOne = (req, res, next) => {
           staffData: resData
         })
       } else {
-        req.err = 'Không tìm thấy history!'
+        req.err = 'Không tìm thấy history!';
+        res.json({
+          userId: userId
+        })
         next('last')
       }
     })

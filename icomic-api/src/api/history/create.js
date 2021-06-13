@@ -6,7 +6,7 @@ const create = (req, res, next) => {
   const newData = {
     userId: data.userId,
     storyId: data.storyId,
-    chapterId: chapterId
+    chapterId: data.chapterId
   }
   const newHistory = HistoryModel(newData)
   

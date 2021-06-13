@@ -1,8 +1,8 @@
 const HistoryModel = require('../../models/history')
 
 const update = (req, res, next) => {
-  const _id = req.params._id
-  const data = req.body
+  const _id = req.params._id;
+  const data = req.body;
 
   HistoryModel.findOneAndUpdate({
     _id

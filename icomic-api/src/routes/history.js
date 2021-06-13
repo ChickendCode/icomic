@@ -7,5 +7,5 @@ const router = express.Router()
 
 router.put('/:_id', auth, update)
 router.get('/:_id', auth, getOne)
-router.post('/register', create)
+router.post('/', create)
 module.exports = router
