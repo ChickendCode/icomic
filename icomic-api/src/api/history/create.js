@@ -2,6 +2,11 @@ const HistoryModel = require('../../models/history')
 
 const create = (req, res, next) => {
   const data = req.body
+
+  if (!data.userId) {
+    req.err = `Đăng kí thất bại! + ${err}`
+    next('last')
+  }
   
   const newData = {
     userId: data.userId,
