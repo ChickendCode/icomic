@@ -3,7 +3,6 @@ import { date } from "../../utils/getDate"
 import { Link } from 'react-router-dom'
 
 const ChaptersList = ({ storyId,  chapters}) => {
-  console.log('chapters', chapters);
   return (
     <div className='chapter-list'>
       {

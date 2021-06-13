@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom"
 import { toggleLoading } from "../../redux/actions/web.actions"
 import { getOneChapter } from "../../services/chapters.services"
 import { getAllChaptersAsync } from "../../redux/actions/chapters.actions"
+import { getOneHistory } from '../../services/history.services'
 
 const Chapter = () => {
   const { _id, chap, storyId } = useParams()
@@ -33,6 +34,21 @@ const Chapter = () => {
 
   useEffect(() => {
     dispatch(getAllChaptersAsync({ story: storyId }, true))
+  }, [dispatch, storyId])
+
+  useEffect(() => {
+    dispatch(toggleLoading(true))
+    getOneHistory(storyId)
+      .then(res => {
+        if (res.data && res.data.status) {
+          
+          dispatch(toggleLoading(false))
+        } else {
+          alert(res.data.message)
+        }
+      })
+      .catch(err => alert('ERROR: ' + err))
+      .then(() => dispatch(toggleLoading(false)))
   }, [dispatch, storyId])
 
   return (

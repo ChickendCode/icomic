@@ -10,7 +10,6 @@ const MainInfo = ({ storyInfo, chapters }) => {
   const [isFollowed, setIsFollowed] = useState(false)
   const [follows, setFollows] = useState(0)
   const dispatch = useDispatch()
-  console.log('chapters', chapters);
   let firstChapter;
   let lastChapter;
   if (chapters && chapters.length > 0) {

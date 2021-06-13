@@ -4,6 +4,7 @@ const storyRouter = require('./story')
 const accountRouter = require('./account')
 const chapterRouter = require('./chapter')
 const categoryRouter = require('./category')
+const historyRouter = require('./history')
 
 const route = (app) => {
   app.use('/api/auth', authRouter)
@@ -12,6 +13,7 @@ const route = (app) => {
   app.use('/api/accounts', accountRouter)
   app.use('/api/chapters', chapterRouter)
   app.use('/api/login', loginRouter)
+  app.use('/api/history', historyRouter)
 }
 
 module.exports = route

@@ -11,7 +11,7 @@ const create = (req, res, next) => {
     .then(resData => {
       if (resData) {
         req.err = 'Người dùng đã tồn tại!'
-        next('last') 
+        next('last')
       } else {
         if (image && image !== 'null') {
           uploadImage(image, {}, (err, result) => {
