@@ -83,7 +83,7 @@ const Header = () => {
                   </Link>
                 }
                 <div className='avt-wrapper'>
-                  <Link>
+                  <Link to='profile'>
                     <img style={{ display: 'inline-block' }} src='/images/user_default_img.png' />
                   </Link>
                   <Link to='/login' className='out'>

@@ -71,6 +71,7 @@ const usersReducer = (state = initState, action) => {
       localStorage.setItem("accessToken", token)
       localStorage.setItem("role", role)
       localStorage.setItem("login", login)
+      localStorage.setItem("userId", _id);
 
       return {
         ...state,
