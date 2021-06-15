@@ -8,7 +8,7 @@ const Account = new Schema({
   following: [{ story: { type: Schema.Types.ObjectId, ref: 'story' } }] || [],
   email: { type: String, maxLength: 100 },
   role: { type: String, default: 'user' },
-  image: { type: Object, default: { url: '/images/user_default_img.png' } },
+  image: { type: String, default: '' },
   phone: { type: String, maxLength: 20 }
 })
 

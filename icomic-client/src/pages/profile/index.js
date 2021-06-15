@@ -1,10 +1,10 @@
 import { useHistory } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { nameValidate, emailValidate, phoneValidate } from '../../utils/validate'
-import { register } from '../../services/authen.services'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleLoading } from '../../redux/actions/web.actions'
 import { getUser, updateUser } from '../../services/users.services'
+import './index.scss';
 
 const Profile = () => {
   const dispatch = useDispatch()
@@ -127,6 +127,33 @@ const Profile = () => {
       e.preventDefault()
   }
 
+  const profilePic = useRef();
+  const fileInput = useRef();
+
+  const readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                profilePic.current.src = e.target.result
+                setUserData({
+                    ...userData,
+                    image: e.target.result
+                })
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    const fileUploadChange = (e) => {
+        readURL(e.target);
+    }
+
+    const uploadButton = () => {
+        fileInput.current.click()
+    }
+
   return (
     login &&
     <>
@@ -135,6 +162,14 @@ const Profile = () => {
                 <h1 className='sign-in-title'>Thông tin tài khoản</h1>
             </div>
             <form onSubmit={(e) => submitHandle(e)} id='sign-in-form'>
+                <label htmlFor='username'>Avatar: </label>
+                <div class="avatar-wrapper">
+                    <img ref={profilePic} class="profile-pic" src={userData.image} />
+                    <div class="upload-button" onClick={(e) => uploadButton(e)}>
+                        <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                    </div>
+                    <input onChange={(e) => fileUploadChange(e)} ref={fileInput} class="file-upload" type="file" accept="image/*"/>
+                </div>
                 <label htmlFor='username'>Tên đăng nhập: </label>
                 <input id='username' placeholder='ex: username123' name='username' value={userData.username} disabled/>
                 <span style={{ fontFamily: 'mainFont' }}>Họ Tên:</span>

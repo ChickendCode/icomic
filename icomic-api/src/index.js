@@ -7,6 +7,9 @@ const route = require('./routes')
 const middleware = require('./middlewares')
 const errHandle = require('./middlewares/errHandle')
 
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
+
 db.connect()
 middleware(app)
 route(app)

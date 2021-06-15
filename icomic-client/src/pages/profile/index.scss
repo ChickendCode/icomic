@@ -1,0 +1,40 @@
+.avatar-wrapper{
+	position: relative;
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	overflow: hidden;
+	box-shadow: 1px 1px 15px -5px black;
+	transition: all .3s ease;
+	&:hover{
+		transform: scale(1.05);
+		cursor: pointer;
+	}
+	&:hover .profile-pic{
+		opacity: .5;
+	}
+	.profile-pic {
+    	height: 100%;
+		width: 100%;
+		transition: all .3s ease;
+	}
+	.upload-button {
+		position: absolute;
+		top: 0; left: 0;
+		height: 100%;
+		width: 100%;
+		.fa-arrow-circle-up{
+			position: absolute;
+			font-size: 60px;
+			top: 21px;
+			left: 20px;
+			text-align: center;
+			opacity: 0;
+			transition: all .3s ease;
+			color: #34495e;
+		}
+		&:hover .fa-arrow-circle-up{
+			opacity: .9;
+		}
+	}
+}

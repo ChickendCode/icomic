@@ -22,11 +22,7 @@ const create = (req, res, next) => {
 
             if (result && result.url) {
               const newData = {
-                ...data,
-                image: {
-                  url: result.url,
-                  publicId: result.public_ids || result.public_id
-                }
+                ...data
               }
 
               const newAccount = new AccountModel(newData)
@@ -47,8 +43,7 @@ const create = (req, res, next) => {
           })
         } else {
           const newData = {
-            ...data,
-            image: null
+            ...data
           }
           const newAccount = AccountModel(newData)
           
