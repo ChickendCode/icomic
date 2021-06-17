@@ -11,7 +11,7 @@ const MainInfo = ({ storyInfo, chapters }) => {
   const [isFollowed, setIsFollowed] = useState(false)
   const [follows, setFollows] = useState(0)
   const [historyChapterData, setHistoryChapterData] = useState(null)
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(null)
   const dispatch = useDispatch()
   let firstChapter;
   let lastChapter;
@@ -58,7 +58,7 @@ const MainInfo = ({ storyInfo, chapters }) => {
       .then(() => dispatch(toggleLoading(false)))
   }
   
-  if (chapters && chapters.length > 0 && !currentIndex) {
+  if (chapters && chapters.length > 0 && currentIndex == null) {
     // Lấy lịch sử đọc của user theo userid và story
     getOneHistory(storyInfo._id)
       .then(res => {
