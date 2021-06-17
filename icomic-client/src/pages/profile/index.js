@@ -116,6 +116,7 @@ const Profile = () => {
           dispatch(toggleLoading(true))
           updateUser(userId, data).then(res => {
                 alert(res.data.message);
+                window.location.reload();
             })
             .catch(err => alert('ERROR: ' + err))
             .then(() => dispatch(toggleLoading(false)))

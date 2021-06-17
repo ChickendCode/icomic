@@ -84,7 +84,7 @@ const Header = () => {
                 }
                 <div className='avt-wrapper'>
                   <Link to='profile'>
-                    <img style={{ display: 'inline-block' }} src='/images/user_default_img.png' />
+                    <img style={{ display: 'inline-block' }} width="42" height="42" src={user.userImage ? user.userImage  : '/images/user_default_img.png'} />
                   </Link>
                   <Link to='/login' className='out'>
                     Đăng xuất
