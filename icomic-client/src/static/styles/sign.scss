@@ -96,7 +96,7 @@
   margin: 16px auto;
 }
 
-.form-auths a {
+.form-auths span {
   display: inline-block;
   width: 48%;
   padding: 5px 0px;
@@ -104,18 +104,18 @@
   border-radius: 999px;
 }
 
-.form-auths a span {
+.form-auths span button {
   margin-right: 8px;
 }
 
-.form-auths a.fb {
+.form-auths button.fb {
   color: white;
   text-decoration: none;
   background: #5073fe;
   transition: ease 0.1s;
 }
 
-.form-auths a.fb:hover {
+.form-auths button.fb:hover {
   background: #4766e2;
 }
 

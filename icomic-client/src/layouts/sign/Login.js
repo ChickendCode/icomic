@@ -6,6 +6,7 @@ import { loginAuth, loginSocialNetwork } from '../../services/authen.services'
 import { toggleLoading } from '../../redux/actions/web.actions'
 import { getUserData } from '../../redux/actions/users.actions'
 import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 
 const Login = (props) => {
   const dispatch = useDispatch()
@@ -98,25 +99,38 @@ const Login = (props) => {
     e.preventDefault()
   }
 
-  const responseFacebook = (response) => {
-    console.log(response);
-    loginSocialNetwork(response)
-      .then(res => {
-        if (res.data && res.data.status) {
-          dispatch(getUserData({
-            ...res.data.user,
-            token: res.data.token,
-            login: true
-          }))
-          history.replace('/')
-        } else {
-          alert('Sai tài khoản hoặc mật khẩu')
-        }
-      })
-      .catch(err => console.log(err))
-      .then(() => {
-        dispatch(toggleLoading(false))
-      })
+  const responseFacebook = (res) => {
+    loginSocial(res);
+  }
+
+  const responseGoogle = (res) => {
+    let profileObj = res.profileObj;
+    let data = {
+      id: profileObj.googleId,
+      email: profileObj.email,
+      name: profileObj.name
+    }
+    loginSocial(data);
+  }
+
+  const loginSocial = (data) => {
+    loginSocialNetwork(data)
+    .then(res => {
+      if (res.data && res.data.status) {
+        dispatch(getUserData({
+          ...res.data.user,
+          token: res.data.token,
+          login: true
+        }))
+        history.replace('/')
+      } else {
+        alert('Sai tài khoản hoặc mật khẩu')
+      }
+    })
+    .catch(err => console.log(err))
+    .then(() => {
+      dispatch(toggleLoading(false))
+    })
   }
 
   return (
@@ -144,19 +158,21 @@ const Login = (props) => {
             </button>
           </div>
           <div className='form-auths'>
-            {/* <Link to='/' className='fb'>
-              <span>Facebook</span><i className="fab fa-facebook"></i>
-            </Link> */}
             <FacebookLogin
                 appId="396398278357475"
                 fields="name,email,picture"
                 callback={responseFacebook}
-                cssClass="my-facebook-button-class"
+                cssClass="fb"
                 icon="fa-facebook"
+                textButton="Facebook"
               />
-            <Link to='/' className='gg'>
-              <span>Google</span><i className="fab fa-google"></i>
-            </Link>
+            <GoogleLogin
+                clientId="309860477197-q8ld5hcua1oc93sc2fjbqkt117kohj0n.apps.googleusercontent.com"
+                buttonText="Google"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={'single_host_origin'}
+              />
           </div>
         </form>
         <Link to='/register' className='link-to-sign-in'>

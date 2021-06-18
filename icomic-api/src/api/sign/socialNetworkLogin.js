@@ -14,7 +14,7 @@ const login = (req, res, next) => {
           username: username,
           password: username,
           fullName: data.name,
-          email: '',
+          email: data.email,
           phone: ''
         };
 
