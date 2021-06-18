@@ -94,7 +94,39 @@
   width: 100%;
   justify-content: space-between;
   margin: 16px auto;
+
+  .gg-btn {
+    background-color: #cc9a3e !important;
+    div {
+      background-color: #cc9a3e !important;
+      padding: 0 !important;
+      float: left;
+      position: relative;
+      left: 25px;
+      top: 4px;
+    }
+
+    span {
+      float: right;
+      position: relative;
+      left: 15px;
+    }
+  }
 }
+
+.form-auths button {
+  width: 150px;
+  height: 40px;
+  border-radius: 10px !important;
+
+  i {
+    float: left;
+    position: relative;
+    left: 25px;
+    top: 4px;
+  }
+}
+
 
 .form-auths span {
   display: inline-block;
