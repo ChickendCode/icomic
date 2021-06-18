@@ -8,6 +8,10 @@ export const loginAuth = (userData) => {
   return request('/login', 'POST', userData)
 }
 
+export const loginSocialNetwork = (userData) => {
+  return request('/login/socialnetwork', 'POST', userData)
+}
+
 export const register = (userData) => {
   return request('/accounts/register', 'POST', userData)
 }

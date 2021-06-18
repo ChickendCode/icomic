@@ -2,9 +2,10 @@ import { Link, useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { usernameValidate } from '../../utils/validate'
 import { useDispatch } from 'react-redux'
-import { loginAuth } from '../../services/authen.services'
+import { loginAuth, loginSocialNetwork } from '../../services/authen.services'
 import { toggleLoading } from '../../redux/actions/web.actions'
 import { getUserData } from '../../redux/actions/users.actions'
+import FacebookLogin from 'react-facebook-login';
 
 const Login = (props) => {
   const dispatch = useDispatch()
@@ -97,6 +98,27 @@ const Login = (props) => {
     e.preventDefault()
   }
 
+  const responseFacebook = (response) => {
+    console.log(response);
+    loginSocialNetwork(response)
+      .then(res => {
+        if (res.data && res.data.status) {
+          dispatch(getUserData({
+            ...res.data.user,
+            token: res.data.token,
+            login: true
+          }))
+          history.replace('/')
+        } else {
+          alert('Sai tài khoản hoặc mật khẩu')
+        }
+      })
+      .catch(err => console.log(err))
+      .then(() => {
+        dispatch(toggleLoading(false))
+      })
+  }
+
   return (
     <>
       <div className='sign-in-container'>
@@ -122,9 +144,16 @@ const Login = (props) => {
             </button>
           </div>
           <div className='form-auths'>
-            <Link to='/' className='fb'>
+            {/* <Link to='/' className='fb'>
               <span>Facebook</span><i className="fab fa-facebook"></i>
-            </Link>
+            </Link> */}
+            <FacebookLogin
+                appId="396398278357475"
+                fields="name,email,picture"
+                callback={responseFacebook}
+                cssClass="my-facebook-button-class"
+                icon="fa-facebook"
+              />
             <Link to='/' className='gg'>
               <span>Google</span><i className="fab fa-google"></i>
             </Link>
