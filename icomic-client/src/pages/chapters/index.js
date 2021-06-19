@@ -16,6 +16,7 @@ const Chapter = () => {
 
   const dispatch = useDispatch()
   const [chapter, setChapter] = useState({})
+  const [value, setValue] = useState(_id)
 
   useEffect(() => {
     dispatch(toggleLoading(true))
@@ -70,6 +71,25 @@ const Chapter = () => {
   .catch(err => alert('ERROR: ' + err))
   .then(() => dispatch(toggleLoading(false)))
 
+  // Prepare list chapters
+  let optionChapter = [];
+  if(chapters && chapters.length > 0) {
+    for (let index = 0; index < chapters.length; index++) {
+      const element = chapters[index];
+      let option = {
+        value: element._id,
+        label: element.name
+      }
+      
+      optionChapter.push(option);
+    }
+  }
+
+  const handleChange = (event) => {
+    let chapterId = event.target.value;
+    let curIndex = chapters.findIndex(x => x._id === chapterId);
+    window.location = `/chapters/${storyId}/${chapterId}/${curIndex + 1}`;
+  }
 
   return (
     <div className='chapter-detail'>
@@ -77,6 +97,12 @@ const Chapter = () => {
         <h1 style={{ position: 'relative'}} className='story'><Link style={{ position: 'absolute', left: 0}} to='/'><i className="fas fa-home"></i></Link>{chapter.story && chapter.story.title}</h1>
         <div className="chap__top">
           <h2 className='chap'>Chương {chap}: {chapter.name}</h2>
+          <select
+              onChange={handleChange}
+              value={value}
+            >
+            {optionChapter .map(({ value, label }) => <option value={value} >{label}</option>)}
+            </select>
           <div className="btn__chap">
           {
             prev &&
