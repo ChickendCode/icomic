@@ -100,10 +100,17 @@ const Login = (props) => {
   }
 
   const responseFacebook = (res) => {
+    if (res.error) {
+      return;
+    }
     loginSocial(res);
   }
 
   const responseGoogle = (res) => {
+    if (res.error) {
+      return;
+    }
+    
     let profileObj = res.profileObj;
     let data = {
       id: profileObj.googleId,
@@ -167,7 +174,7 @@ const Login = (props) => {
                 textButton="Facebook"
               />
             <GoogleLogin
-                clientId="309860477197-q8ld5hcua1oc93sc2fjbqkt117kohj0n.apps.googleusercontent.com"
+                clientId="309860477197-sbm8hsuv96e3bp5av584fuojoj242sbb.apps.googleusercontent.com"
                 buttonText="Google"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
